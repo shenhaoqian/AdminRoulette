@@ -13,7 +13,7 @@ import java.util.UUID;
 public class AdminRoulette extends JavaPlugin {
     private FileConfiguration config;
     private final HashMap<UUID, Long> cooldowns = new HashMap<>();
-    private static final long COOLDOWN_TIME = 30 * 1000; // 30ç§’ï¼ˆæ¯«ç§’å•ä½ï¼‰
+    private static final long COOLDOWN_TIME = 30 * 1000; // 30Ãë£¨ºÁÃëµ¥Î»£©
 
     @Override
     public void onEnable() {
@@ -25,13 +25,13 @@ public class AdminRoulette extends JavaPlugin {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage("è¯·ä¸è¦åœ¨æœåŠ¡å™¨åå°ä½¿ç”¨æ­¤æŒ‡ä»¤ï¼Œå› ä¸ºç”¨äº†ä¹Ÿæ²¡ç”¨awa");
+            sender.sendMessage("Çë²»ÒªÔÚ·şÎñÆ÷ºóÌ¨Ê¹ÓÃ´ËÖ¸Áî£¬ÒòÎªÓÃÁËÒ²Ã»ÓÃawa");
             return true;
         }
 
         Player player = (Player) sender;
         if (!player.isOp()) {
-            player.sendMessage("Â§céopç©å®¶ä¸èƒ½ä½¿ç”¨æ­¤æŒ‡ä»¤å“¦");
+            player.sendMessage("¡ìc·ÇopÍæ¼Ò²»ÄÜÊ¹ÓÃ´ËÖ¸ÁîÅ¶");
             return true;
         }
 
@@ -39,7 +39,7 @@ public class AdminRoulette extends JavaPlugin {
         if (cooldowns.containsKey(uuid)) {
             long remaining = (cooldowns.get(uuid) + COOLDOWN_TIME - System.currentTimeMillis()) / 1000;
             if (remaining > 0) {
-                player.sendMessage("Â§eä½¿ç”¨é¢‘ç‡è¿‡å¿«ï¼å†·å´æ—¶é—´å‰©ä½™ " + remaining + " ç§’");
+                player.sendMessage("¡ìeÊ¹ÓÃÆµÂÊ¹ı¿ì£¡ÀäÈ´Ê±¼äÊ£Óà " + remaining + " Ãë");
                 return true;
             }
         }
@@ -48,16 +48,16 @@ public class AdminRoulette extends JavaPlugin {
         Player admin = Bukkit.getPlayer(adminName);
         
         if (admin == null || !admin.isOnline()) {
-            player.sendMessage("Â§cæœä¸»å¤§äººå½“å‰ä¸åœ¨çº¿å“¦");
+            player.sendMessage("¡ìc·şÖ÷´óÈËµ±Ç°²»ÔÚÏßÅ¶");
             return true;
         }
 
         if (Math.random() < 0.5) {
             admin.setHealth(0);
-            Bukkit.broadcastMessage("Â§4" + player.getName() + " çœ‹æ¥ä½ çš„è¿æ°”å¾ˆå¥½");
+            Bukkit.broadcastMessage("¡ì4" + player.getName() + " ¿´À´ÄãµÄÔËÆøºÜºÃ");
         } else {
             player.setHealth(0);
-            Bukkit.broadcastMessage("Â§6" + player.getName() + " çœ‹æ¥ä½ çš„è¿æ°”ä¸æ˜¯å¾ˆå¥½å‘¢");
+            Bukkit.broadcastMessage("¡ì6" + player.getName() + " ¿´À´ÄãµÄÔËÆø²»ÊÇºÜºÃÄØ");
         }
 
         cooldowns.put(uuid, System.currentTimeMillis());
